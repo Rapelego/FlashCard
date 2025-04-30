@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FlashCard</string>
+    <string name="title_activity_question_screen">QuestionScreen</string>
+    <string name="title_activity_score_screen">ScoreScreen</string>
 </resources>
