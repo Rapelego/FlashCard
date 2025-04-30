@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.size(50.dp))
                 Button(onClick = {
                     //Runs Question Screen When Clicked
-                    val Start = Intent(thiscom.example.flashcardquiz.MainActivity, QuestionScreen::class.java)
+                    val Start = Intent (this@MainActivity, QuestionScreen::class.java)
                     startActivity(Start)
                 })
                 {
