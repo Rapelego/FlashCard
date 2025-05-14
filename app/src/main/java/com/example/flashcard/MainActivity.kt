@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     startActivity(Start)
                 })
                 {
-                    Text(text = "Start")
+                    Text(text = "Start.")
                 }
 
 
