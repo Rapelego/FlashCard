@@ -45,7 +45,7 @@ class ScoreScreen : ComponentActivity() {
         }
 
             Row {
-                Button(onClick =  { reviewAnswers= true
+                Button(onClick =  {reviewAnswers= true
                 }){
                 Text(text = "Review Answers")
                 }
