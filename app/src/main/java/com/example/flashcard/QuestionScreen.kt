@@ -41,7 +41,7 @@ class QuestionScreen : ComponentActivity() {
                 "The Capital of South Africa is Cape Town",
                 "Jacob Zuma was the president of the Youth League",
                 "Shaka Zulu was a famous Bapedi leader",
-                "The apartheid era ended in the 1990's"                                                                                                                                                                                                                                                                                                                                                                                                                 
+                "The apartheid era ended in the 1990's"
             )
 
             //correct Answers
@@ -52,7 +52,7 @@ class QuestionScreen : ComponentActivity() {
                 modifier = Modifier.fillMaxSize()
             ) {
             //Check if quiz is ongoing
-            if (isQuizComplete && currentQuestionIndex < totalQuestions) {
+            if (!isQuizComplete && currentQuestionIndex < totalQuestions) {
                 Text(text = Questions[currentQuestionIndex])//display current question
                 Spacer(modifier = Modifier.height(40.dp))
                 Text(text = resultsMessage)//display feedback
