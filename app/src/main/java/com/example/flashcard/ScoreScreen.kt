@@ -17,12 +17,8 @@ class ScoreScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-val score = intent.getIntExtra("score",0)
-            scoreTextView.text= "You Scored $score out of ${Questions.size}"
-            if (score>=3) {
-                feedbackTextView.text ="Great Job!" } else{
-                feedbackTextView."Keep Studying!"
-            }
+
+            
         }
     }
 }
