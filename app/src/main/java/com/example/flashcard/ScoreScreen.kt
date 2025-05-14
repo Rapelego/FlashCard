@@ -30,42 +30,64 @@ class ScoreScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-          var reviewAnswers by remember{mutableStateOf(false)}
-          var Score = intent.getIntExtra("score",-1)
-          var  totalQuestions = intent.getIntExtra("totalQuestions",-1)
+            var reviewAnswers by remember { mutableStateOf(false) }
+            val score = intent.getIntExtra("score", -1)
+            val totalQuestions = intent.getIntExtra("totalQuestions", -1)
 
-     Column {
-         Text(text = "Quiz Complete")
-         Spacer(modifier = Modifier.size(20.dp))
-         if (Score<3){
-             Text(text="Better luck next time:$Score/$totalQuestions")//if scored less than 3
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Quiz Complete",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.size(20.dp))
 
-         }else{
-             Text(text="Congradulations: $Score/$totalQuestions")}//if scored over 3
-        }
-
-            Row {
-                Button(onClick =  {reviewAnswers= true
-                }){
-                Text(text = "Review Answers")
+                if (score < 3) {
+                    Text(text = "Better luck next time: $score/$totalQuestions")
+                } else {
+                    Text(text = "Congratulations: $score/$totalQuestions")
                 }
 
-                Button({this@ScoreScreen.finishAffinity()}) {
-                    Text(text = "Exit")
-                }//close all activities
-            }
-Spacer(modifier = Modifier.size(30.dp))
-            if (reviewAnswers)//reviews and displays questions and answers
-            {
-                Text(text = "Nelson Mandela was the first black president in South Africa: True\n"+
-                "The Capital of South Africa is Cape Town : False\n"+
-                "Jacob Zuma was the president of the Youth League: False\n"+
-                "Shaka Zulu was a famous Bapedi leader : False\n"+
-                "The apartheid era ended in the 1990's : True\n",
-                    fontSize = 15.sp,
-                    fontWeight = FontWeight.Bold)
+                Spacer(modifier = Modifier.size(24.dp))
+
+                Row(
+                    modifier = Modifier.padding(vertical = 12.dp),
+                    horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp)
+                ) {
+                    Button(onClick = { reviewAnswers = true }) {
+                        Text(text = "Review Answers")
+                    }
+
+                    Button(onClick = { this@ScoreScreen.finishAffinity() }) {
+                        Text(text = "Exit")
+                    }
+                }
+
+                Spacer(modifier = Modifier.size(30.dp))
+
+                if (reviewAnswers) {
+                    Text(
+                        text = """
+                    Nelson Mandela was the first black president in South Africa: True
+                    The Capital of South Africa is Cape Town: False
+                    Jacob Zuma was the president of the Youth League: False
+                    Shaka Zulu was a famous Bapedi leader: False
+                    The apartheid era ended in the 1990's: True
+                """.trimIndent(),
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
             }
         }
+
+
+
     }
 }
 
