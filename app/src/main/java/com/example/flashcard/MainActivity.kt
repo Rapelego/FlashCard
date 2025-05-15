@@ -24,24 +24,33 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Column {
-                Text(text = "Welcome")
-                Spacer(modifier = Modifier.size(10.dp))
-                Text(text = "This a flash card app to help you study for your History")
-                Divider()
-                Spacer(modifier = Modifier.size(50.dp))
-                Button(onClick = {
-                    //Runs Question Screen When Clicked
-                    val Start = Intent (this@MainActivity, QuestionScreen::class.java)
-                    startActivity(Start)
-                })
-                {
-                    Text(text = "Start")
+            FlashCardTheme {
+                Scaffold { innerPadding ->
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                            .padding(24.dp),
+                        horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally,
+                        verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center
+                    ) {
+                        Text(text = "Welcome")
+                        Spacer(modifier = Modifier.size(10.dp))
+                        Text(text = "This is a flash card app to help you study for your History")
+                        Spacer(modifier = Modifier.size(20.dp))
+                        Divider()
+                        Spacer(modifier = Modifier.size(40.dp))
+                        Button(
+                            onClick = {
+                                //Runs Question Screen When Clicked
+                                val start = Intent(this@MainActivity, QuestionScreen::class.java)
+                                startActivity(start)
+                            }
+                        ) {
+                            Text(text = "Start")
+                        }
+                    }
                 }
-
-
             }
         }
-    }
-}
-
+    }}
