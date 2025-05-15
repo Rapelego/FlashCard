@@ -28,14 +28,17 @@ class QuestionScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //variables
-            val totalQuestions = 5//total number of questions
-            var isQuizComplete by remember { mutableStateOf(false) }//
-            var currentQuestionIndex by remember { mutableStateOf(0) }//
-            var userScore by remember { mutableStateOf(0) }//
-            var resultsMessage by remember { mutableStateOf("") }//
-            var areButtonDisabled by remember { mutableStateOf(false) }//
+            //Total number of questions
+            val totalQuestions = 5
 
+            //Variables to track quiz progress
+            var isQuizComplete by remember { mutableStateOf(false) }//Tracks if quiz is done
+            var currentQuestionIndex by remember { mutableStateOf(0) }//Index of current question
+            var userScore by remember { mutableStateOf(0) }//Number of correct answers
+            var resultsMessage by remember { mutableStateOf("") }//Message after answering
+            var areButtonDisabled by remember { mutableStateOf(false) }//Prevents double answer
+
+            //Array of questions
             val Questions = arrayOf(
                 "Nelson Mandela was the first black president in South Africa",
                 "The Capital of South Africa is Cape Town",
@@ -55,7 +58,7 @@ class QuestionScreen : ComponentActivity() {
             if (!isQuizComplete && currentQuestionIndex < totalQuestions) {
                 Text(text = Questions[currentQuestionIndex])//display current question
                 Spacer(modifier = Modifier.height(40.dp))
-                Text(text = resultsMessage)//display feedback
+                Text(text = resultsMessage)//display feedback (Correct/Incorrect)
                 Spacer(modifier = Modifier.height(50.dp))
 
                 Row {//True Button
@@ -88,20 +91,36 @@ class QuestionScreen : ComponentActivity() {
                     ) { Text(text = "False") }//
                 }
             }
-            //Next Button
-            Button(onClick = {
-                currentQuestionIndex++//move to next question
-                resultsMessage = ""//Clear feedback
-                areButtonDisabled = false//re-enable buttons
-                if (currentQuestionIndex >= totalQuestions) {
-                    //Check if Quiz is Completed
-                    isQuizComplete = true
+                Spacer(modifier = Modifier.height(24.dp))
+
+                // NEXT Button: Only visible if quiz is not yet complete
+                if (currentQuestionIndex < totalQuestions - 1) {
+                    Button(
+                        onClick = {
+                            currentQuestionIndex++ // Move to next question
+                            resultsMessage = "" // Clear feedback
+                            areButtonDisabled = false // Re-enable buttons
+                        }
+                    ) {
+                        Text(text = "Next")
+                    }
+                } else {
+                    // At last question: mark quiz as complete when Next would be pressed
+                    Button(
+                        onClick = {
+                            isQuizComplete = true
+                        }
+                    ) {
+                        Text(text = "Finish Quiz")
+                    }
                 }
-            }) { Text(text = "Next") }
+            }
 
             //View Results button which appears when quiz is finished
                 if (isQuizComplete) {
+                    Spacer(modifier = Modifier.height(40.dp))
                     Button(onClick = {
+                        //Navigate to score Screen with score and total
                         val intent = Intent(this@QuestionScreen, ScoreScreen::class.java)
                         intent.putExtra("score", userScore)
                         intent.putExtra("total", totalQuestions)
@@ -111,19 +130,10 @@ class QuestionScreen : ComponentActivity() {
                         Text(text = "View Results")
                     }
                 }
-
-
-
-
             }
-
-
-
-
-
         }
     }
 
-    }
+
 
 
