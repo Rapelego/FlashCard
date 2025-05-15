@@ -10,20 +10,15 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.flashcard.ui.theme.FlashCardTheme
 
 class QuestionScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,43 +50,43 @@ class QuestionScreen : ComponentActivity() {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.fillMaxSize()
             ) {
-            //Check if quiz is ongoing
-            if (!isQuizComplete && currentQuestionIndex < totalQuestions) {
-                Text(text = Questions[currentQuestionIndex])//display current question
-                Spacer(modifier = Modifier.height(40.dp))
-                Text(text = resultsMessage)//display feedback (Correct/Incorrect)
-                Spacer(modifier = Modifier.height(50.dp))
+                //Check if quiz is ongoing
+                if (!isQuizComplete && currentQuestionIndex < totalQuestions) {
+                    Text(text = Questions[currentQuestionIndex])//display current question
+                    Spacer(modifier = Modifier.height(40.dp))
+                    Text(text = resultsMessage)//display feedback (Correct/Incorrect)
+                    Spacer(modifier = Modifier.height(50.dp))
 
-                Row {//True Button
-                    Button(
-                        onClick = {
-                            if (Answers[currentQuestionIndex]) {
-                                resultsMessage = "correct!"
-                                userScore++ //Shows Score
-                            } else {
-                                resultsMessage = "Incorrect!"
-                            }
-                            areButtonDisabled = true//disable button after selection
-                        },
-                        enabled = !areButtonDisabled//
-                    ) {
-                        Text(text = "True")
+                    Row {//True Button
+                        Button(
+                            onClick = {
+                                if (Answers[currentQuestionIndex]) {
+                                    resultsMessage = "correct!"
+                                    userScore++ //Shows Score
+                                } else {
+                                    resultsMessage = "Incorrect!"
+                                }
+                                areButtonDisabled = true//disable button after selection
+                            },
+                            enabled = !areButtonDisabled//
+                        ) {
+                            Text(text = "True")
+                        }
+                        //False Button
+                        Button(
+                            onClick = {
+                                if (!Answers[currentQuestionIndex]) {//if answer is correct
+                                    resultsMessage = "Correct!"
+                                    userScore++//Shows score
+                                } else {
+                                    resultsMessage = "Incorrect!"
+                                }
+                                areButtonDisabled = true//Disable button after Selection
+                            },
+                            enabled = !areButtonDisabled
+                        ) { Text(text = "False") }//
                     }
-                    //False Button
-                    Button(
-                        onClick = {
-                            if (!Answers[currentQuestionIndex]) {//if answer is correct
-                                resultsMessage = "Correct!"
-                                userScore++//Shows score
-                            } else {
-                                resultsMessage = "Incorrect!"
-                            }
-                            areButtonDisabled = true//Disable button after Selection
-                        },
-                        enabled = !areButtonDisabled
-                    ) { Text(text = "False") }//
                 }
-            }
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // NEXT Button: Only visible if quiz is not yet complete
@@ -105,8 +100,7 @@ class QuestionScreen : ComponentActivity() {
                     ) {
                         Text(text = "Next")
                     }
-                }
-                else if (!isQuizComplete) {
+                } else if (!isQuizComplete) {
                     // Show Finish Quiz only on the last question and before completion
                     Button(
                         onClick = {
@@ -138,10 +132,10 @@ class QuestionScreen : ComponentActivity() {
                     }
                 }
             }
+         }
+        }
+      }
 
-        }
-        }
-    }
 
 
 
