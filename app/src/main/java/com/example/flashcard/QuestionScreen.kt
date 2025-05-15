@@ -104,8 +104,9 @@ class QuestionScreen : ComponentActivity() {
                     ) {
                         Text(text = "Next")
                     }
-                } else {
-                    // At last question: mark quiz as complete when Next would be pressed
+                }
+                else if (!isQuizComplete) {
+                    // Show Finish Quiz only on the last question and before completion
                     Button(
                         onClick = {
                             isQuizComplete = true
@@ -114,6 +115,7 @@ class QuestionScreen : ComponentActivity() {
                         Text(text = "Finish Quiz")
                     }
                 }
+
             }
 
             //View Results button which appears when quiz is finished
