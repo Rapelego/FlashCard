@@ -38,12 +38,15 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        Text(text = "Welcome",
+                        Text(
+                            text = "Welcome",
                             fontSize = 28.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color(0xFF1976D2))
+                            color = Color(0xFF1976D2)
+                        )
                         Spacer(modifier = Modifier.size(10.dp))
-                        Text(text = "This is a History flashcard app that consists of 5 True/False questions.When you are ready,press the Start button to continue. ",
+                        Text(
+                            text = "This is a History flashcard app that consists of 5 True/False questions.When you are ready,press the Start button to continue. ",
                             fontSize = 16.sp,
                             color = Color.DarkGray
                         )

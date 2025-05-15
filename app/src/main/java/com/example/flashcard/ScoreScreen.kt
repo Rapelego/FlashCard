@@ -3,6 +3,7 @@ package com.example.flashcard
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -34,13 +36,16 @@ class ScoreScreen : ComponentActivity() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
+                    .background(Color(0xFFE3F2FD)) // Light Blue background
                     .padding(24.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
                 Text(
-                    text = "Quiz Complete",
+                    text = "Quiz Completed!",
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF1976D2)
                 )
                 Spacer(modifier = Modifier.size(20.dp))
 
@@ -53,7 +58,7 @@ class ScoreScreen : ComponentActivity() {
                 Spacer(modifier = Modifier.size(12.dp))
 
                 //Feedback Based on Score
-                val feedback = if (score >= 3)  "Great job!" else "Keep Practicing!"
+                val feedback = if (score >= 3) "Great job!" else "Keep Practicing!"
                 Text(
                     text = feedback,
                     fontSize = 18.sp,
@@ -87,7 +92,8 @@ class ScoreScreen : ComponentActivity() {
                     The apartheid era ended in the 1990's: True
                 """.trimIndent(),
                         fontSize = 15.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color(0xFF1976D2)
                     )
 
                 }
