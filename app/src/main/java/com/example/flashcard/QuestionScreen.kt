@@ -63,7 +63,7 @@ class QuestionScreen : ComponentActivity() {
                         onClick = {
                             if (Answers[currentQuestionIndex]) {
                                 resultsMessage = "correct!"
-                                userScore++ //Increment Score
+                                userScore++ //Shows Score
                             } else {
                                 resultsMessage = "Incorrect!"
                             }
@@ -78,11 +78,11 @@ class QuestionScreen : ComponentActivity() {
                         onClick = {
                             if (!Answers[currentQuestionIndex]) {//if answer is correct
                                 resultsMessage = "Correct!"
-                                userScore++
+                                userScore++//Shows score
                             } else {
                                 resultsMessage = "Incorrect!"
                             }
-                            areButtonDisabled = true//
+                            areButtonDisabled = true//Disable button after Selection
                         },
                         enabled = !areButtonDisabled
                     ) { Text(text = "False") }//
@@ -99,11 +99,12 @@ class QuestionScreen : ComponentActivity() {
                 }
             }) { Text(text = "Next") }
 
+            //View Results button which appears when quiz is finished
                 if (isQuizComplete) {
                     Button(onClick = {
                         val intent = Intent(this@QuestionScreen, ScoreScreen::class.java)
-                        intent.putExtra("SCORE", userScore)
-                        intent.putExtra("TOTAL", totalQuestions)
+                        intent.putExtra("score", userScore)
+                        intent.putExtra("total", totalQuestions)
                         startActivity(intent)
                         finish()
                     }) {

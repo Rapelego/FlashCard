@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -33,7 +34,7 @@ class ScoreScreen : ComponentActivity() {
             var reviewAnswers by remember { mutableStateOf(false) }
 
             val score = intent.getIntExtra("score", -1)
-            val totalQuestions = intent.getIntExtra("totalQuestions", -1)
+            val totalQuestions = intent.getIntExtra("totalQuestions", 5)
 
             Column(
                 modifier = Modifier
@@ -48,7 +49,7 @@ class ScoreScreen : ComponentActivity() {
                 )
                 Spacer(modifier = Modifier.size(20.dp))
 
-                // Display the score
+                //Display the score
                 Text(
                     text = "You scored $score out of $totalQuestions",
                     fontSize = 18.sp
@@ -56,9 +57,10 @@ class ScoreScreen : ComponentActivity() {
 
                 Spacer(modifier = Modifier.size(12.dp))
 
-                //  Feedback Based on Score
+                //Feedback Based on Score
+                val feedback = if (score >= 3)  "Great job!" else "Keep Practicing!"
                 Text(
-                    text = if (score < 3) "Keep practicing" else "Great job",
+                    text = feedback,
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -67,7 +69,7 @@ class ScoreScreen : ComponentActivity() {
 
                 Row(
                     modifier = Modifier.padding(vertical = 12.dp),
-                    horizontalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(16.dp)
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     Button(onClick = { reviewAnswers = true }) {
                         Text(text = "Review Answers")
@@ -92,9 +94,6 @@ class ScoreScreen : ComponentActivity() {
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
-
-                    Spacer(modifier = Modifier.size(20.dp))
-
 
                 }
             }
