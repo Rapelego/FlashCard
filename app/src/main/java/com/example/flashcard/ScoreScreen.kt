@@ -31,6 +31,7 @@ class ScoreScreen : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             var reviewAnswers by remember { mutableStateOf(false) }
+
             val score = intent.getIntExtra("score", -1)
             val totalQuestions = intent.getIntExtra("totalQuestions", -1)
 
@@ -47,13 +48,22 @@ class ScoreScreen : ComponentActivity() {
                 )
                 Spacer(modifier = Modifier.size(20.dp))
 
-                if (score < 3) {
-                    Text(text = "Better luck next time: $score/$totalQuestions")
-                } else {
-                    Text(text = "Congratulations: $score/$totalQuestions")
-                }
+                // Display the score
+                Text(
+                    text = "You scored $score out of $totalQuestions",
+                    fontSize = 18.sp
+                )
 
-                Spacer(modifier = Modifier.size(24.dp))
+                Spacer(modifier = Modifier.size(12.dp))
+
+                //  Feedback Based on Score
+                Text(
+                    text = if (score < 3) "Keep practicing" else "Great job",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.SemiBold
+                )
+
+                Spacer(modifier = Modifier.size(20.dp))
 
                 Row(
                     modifier = Modifier.padding(vertical = 12.dp),
@@ -82,12 +92,13 @@ class ScoreScreen : ComponentActivity() {
                         fontSize = 15.sp,
                         fontWeight = FontWeight.Bold
                     )
+
+                    Spacer(modifier = Modifier.size(20.dp))
+
+
                 }
             }
         }
-
-
-
     }
 }
 

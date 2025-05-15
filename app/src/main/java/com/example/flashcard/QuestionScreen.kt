@@ -71,12 +71,12 @@ class QuestionScreen : ComponentActivity() {
                         },
                         enabled = !areButtonDisabled//
                     ) {
-                        Text(text = "true")
+                        Text(text = "True")
                     }
                     //False Button
                     Button(
                         onClick = {
-                            if (Answers[currentQuestionIndex]) {//if answer is correct
+                            if (!Answers[currentQuestionIndex]) {//if answer is correct
                                 resultsMessage = "Correct!"
                                 userScore++
                             } else {
