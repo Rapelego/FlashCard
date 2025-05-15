@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -119,10 +120,14 @@ class QuestionScreen : ComponentActivity() {
             }
 
             //View Results button which appears when quiz is finished
-                if (isQuizComplete) {
-                    Spacer(modifier = Modifier.height(40.dp))
+            if (isQuizComplete) {
+                Spacer(modifier = Modifier.height(20.dp))
+                Row(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Button(onClick = {
-                        //Navigate to score Screen with score and total
                         val intent = Intent(this@QuestionScreen, ScoreScreen::class.java)
                         intent.putExtra("score", userScore)
                         intent.putExtra("total", totalQuestions)
@@ -133,6 +138,8 @@ class QuestionScreen : ComponentActivity() {
                     }
                 }
             }
+
+        }
         }
     }
 
